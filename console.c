@@ -5,10 +5,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-// Bind a shell to a serial console (/dev/firmadyne)
+// Bind a shell to a serial console (/firmadyne/ttyS1) and
+// ensure the session has support for job control (e.g.,
+// ctrl+c, ctrl+z)
 
 int main(int argc, char **argv) {
     int fd;
+
+    setsid();
 
     close(2);
     close(1);
